@@ -1,0 +1,20 @@
+
+    <mat-card class="metric mat-elevation-z7">
+      <mat-card-content class="chat">
+        <div *ngFor="let qa of qaFeed" class="qa">
+          <div class="question"><p class="q">{{qa.question}}</p></div>
+          <div class="answer" [innerHTML]="qa.answer | MarkdownToHtml | async"></div>
+        </div>
+        <div class="question" *ngIf="questionFlying"><p class="q" >{{questionFlying}}</p></div>
+        <div class="answer" *ngIf="questionFlying"><p class="q ellipsis" >{{questionThinking}}</p></div>
+        <form (ngSubmit)="onSubmit()">
+          <div class="chat-input">
+            <textarea [(ngModel)]="question" name="question" id="chat-question" placeholder="Enter your question"></textarea>
+            <button mat-fab extended id="chat-submit" type="submit">
+              <mat-icon>arrow_upward</mat-icon>
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
